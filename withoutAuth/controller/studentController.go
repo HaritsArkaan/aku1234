@@ -140,7 +140,7 @@ func UpdateStudent(c *gin.Context) {
 // @Description Delete a Student by id.
 // @Tags Student
 // @Produce json
-// @Param id path string true "Student id"
+// @Param id path int true "Student id"
 // @Success 200 {object} map[string]boolean
 // @Router /students/{id} [delete]
 func DeleteStudent(c *gin.Context) {

@@ -184,7 +184,7 @@ const docTemplate = `{
                 "summary": "Delete one Student.",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "Student id",
                         "name": "id",
                         "in": "path",

@@ -4,6 +4,8 @@ import (
 	"withoutAuth/config"
 	"withoutAuth/docs"
 	"withoutAuth/routes"
+
+	"github.com/gin-contrib/cors"
 )
 
 // @contact.name API Support
@@ -28,5 +30,17 @@ func main() {
 	defer sqlDB.Close()
 
 	r := routes.SetupRouter(db)
-	r.Run()
+	
+	// Middleware CORS
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"}, // URL frontend (sesuaikan dengan frontend Anda)
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
+
+	// Run the server
+	r.Run(":8080")
+
 }
