@@ -17,12 +17,11 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	r.Use(func(c *gin.Context) {
 		c.Set("db", db)
 	})
-	r.GET("/students", controller.GetAllStudent)
-	r.POST("/students", controller.CreateStudent)
-	r.GET("/students/id/:id", controller.GetStudentById)
-	r.GET("/students/name/:name", controller.GetIdByStudent)
-	r.PATCH("/students/:id", controller.UpdateStudent)
-	r.DELETE("students/:id", controller.DeleteStudent)
+	r.GET("/tugaspendahuluans", controller.GetAllTugasPendahuluan)
+	r.POST("/tugaspendahuluans", controller.CreateTugasPendahuluan)
+	r.GET("/tugaspendahuluans/id/:id", controller.GetTugasPendahuluanById)
+	r.PATCH("/tugaspendahuluans/:id", controller.UpdateTugasPendahuluan)
+	r.DELETE("/tugaspendahuluans/:id", controller.DeleteTugasPendahuluan)
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 

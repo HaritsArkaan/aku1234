@@ -3,9 +3,11 @@ import axios from "axios";
 
 function Dashboard() {
   const [input, setInput] = useState({
-    name: "",
-    age: 0,
-    class_id: 0,
+    judul: "",
+    subJudul: "",
+    kategori: "",
+    deadline: "",
+    deskripsi: "",
   });
 
   const [students, setStudents] = useState([]);
@@ -17,10 +19,10 @@ function Dashboard() {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/students");
+      const res = await axios.get("http://localhost:8080/tugaspendahuluans");
       setStudents(res.data.data); // Sesuaikan dengan struktur respon dari backend
     } catch (err) {
-      console.error("Error fetching students:", err);
+      console.error("Error fetching data:", err);
     }
   };
 
@@ -34,25 +36,26 @@ function Dashboard() {
   const handleAddStudent = async (e) => {
     e.preventDefault();
     try {
-      // Pastikan age adalah integer
       const studentData = {
-        name: input.name,
-        age: parseInt(input.age, 10), // Mengonversi age ke integer
-        class: parseInt(input.class_id, 10),
+        judul: input.judul,
+        subJudul: input.subJudul,
+        kategori: input.kategori,
+        deadline: input.deadline,
+        deskripsi: input.deskripsi,
       };
-      console.log("Adding student:", studentData);
-      // Mengirim data siswa baru
+      console.log("Adding tugas:", studentData);
+      // Mengirim data tugas baru
       const res = await axios.post(
-        "http://localhost:8080/students",
+        "http://localhost:8080/tugaspendahuluans",
         studentData
       );
-      console.log("Added student:", res.data.data); // Log data yang ditambahkan
-      // Menambahkan siswa baru ke dalam daftar siswa secara langsung
+      console.log("Added tugas:", res.data.data); // Log data yang ditambahkan
+      // Menambahkan tugas baru ke dalam daftar tugas secara langsung
       setStudents((prevStudents) => [...prevStudents, res.data.data]);
-      setInput({ name: "", age: 0, class_id: 0 }); // Reset input
+      setInput({ judul: "", sub_judul: "", kategori: "", deadline: "", deskripsi: "", });
     } catch (err) {
       console.error(
-        "Error adding student:",
+        "Error adding tugas:",
         err.response ? err.response.data : err.message
       );
     }
@@ -61,7 +64,7 @@ function Dashboard() {
   // Menghapus siswa
   const handleDelete = (id) => {
     try {
-      axios.delete(`http://localhost:8080/students/${id}`);
+      axios.delete(`http://localhost:8080/tugaspendahuluans/${id}`);
       fetchStudents(); // Refresh data setelah penghapusan
     } catch (err) {
       console.error("Error deleting student:", err);
@@ -72,54 +75,74 @@ function Dashboard() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4">Students</h1>
+      <h1 className="text-3xl font-bold mb-4">Tugas Pendahuluan</h1>
       <div className="flex space-x-4 mb-4">
         <input
           type="text"
-          name="name"
-          value={input.name}
+          name="judul"
+          value={input.judul}
           onChange={handleInput}
-          placeholder="Name"
+          placeholder="Judul"
           className="border border-gray-300 rounded-md px-4 py-2"
         />
         <input
-          type="number"
-          name="age"
-          value={input.age}
+          type="text"
+          name="subJudul"
+          value={input.subJudul}
           onChange={handleInput}
-          placeholder="Age"
+          placeholder="subJudul"
           className="border border-gray-300 rounded-md px-4 py-2"
         />
         <input
-          type="number"
-          name="class_id"
-          value={input.class_id}
+          type="text"
+          name="kategori"
+          value={input.kategori}
           onChange={handleInput}
-          placeholder="Class_id"
+          placeholder="kategori"
+          className="border border-gray-300 rounded-md px-4 py-2"
+        />
+        <input
+          type="text"
+          name="deadline"
+          value={input.deadline}
+          onChange={handleInput}
+          placeholder="deadline"
+          className="border border-gray-300 rounded-md px-4 py-2"
+        />
+        <input
+          type="text"
+          name="deskripsi"
+          value={input.deskripsi}
+          onChange={handleInput}
+          placeholder="deskripsi"
           className="border border-gray-300 rounded-md px-4 py-2"
         />
         <button
           onClick={handleAddStudent}
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
         >
-          Add Student
+          Add Tugas
         </button>
       </div>
       <table className="table-auto w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr className="bg-gray-100">
             <th className="px-4 py-2 text-left">Name</th>
-            <th className="px-4 py-2 text-left">Age</th>
-            <th className="px-4 py-2 text-left">Class</th>
+            <th className="px-4 py-2 text-left">Sub Judul</th>
+            <th className="px-4 py-2 text-left">Kategori</th>
+            <th className="px-4 py-2 text-left">Deadline</th>
+            <th className="px-4 py-2 text-left">Deskripsi</th>
             <th className="px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student) => (
             <tr key={student.ID} className="border-t">
-              <td className="px-4 py-2">{student.name}</td>
-              <td className="px-4 py-2">{student.age}</td>
-              <td className="px-4 py-2">{student.class_id}</td>
+              <td className="px-4 py-2">{student.judul}</td>
+              <td className="px-4 py-2">{student.suJudul}</td>
+              <td className="px-4 py-2">{student.kategori}</td>
+              <td className="px-4 py-2">{student.deadline}</td>
+              <td className="px-4 py-2">{student.deskripsi}</td>
               <td className="px-4 py-2">
                 <button className="bg-yellow-400 text-black px-3 py-1 rounded-md mr-2 hover:bg-yellow-500">
                   Edit

@@ -1,22 +1,32 @@
 definitions:
-  controller.StudentInput:
+  controller.TugasPendahuluanInput:
     properties:
-      age:
-        type: integer
-      class:
-        type: integer
-      name:
+      deadline:
+        type: string
+      deskripsi:
+        type: string
+      judul:
+        type: string
+      kategori:
+        type: string
+      subJudul:
         type: string
     type: object
-  models.Student:
+  models.TugasPendahuluan:
     properties:
-      age:
-        type: integer
-      class_id:
-        type: integer
+      createdAt:
+        type: string
+      deadline:
+        type: string
+      deskripsi:
+        type: string
       id:
         type: integer
-      name:
+      judul:
+        type: string
+      kategori:
+        type: string
+      subJudul:
         type: string
     type: object
 info:
@@ -29,34 +39,9 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
 paths:
-  /student/{id}:
-    patch:
-      description: Update Student by id.
-      parameters:
-      - description: Student id
-        in: path
-        name: id
-        required: true
-        type: string
-      - description: the body to update student
-        in: body
-        name: Body
-        required: true
-        schema:
-          $ref: '#/definitions/controller.StudentInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.Student'
-      summary: Update Student.
-      tags:
-      - Student
-  /students:
+  /tugaspendahuluans:
     get:
-      description: Get a list of Student.
+      description: Get a list of TugasPendahuluan.
       produces:
       - application/json
       responses:
@@ -64,35 +49,35 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Student'
+              $ref: '#/definitions/models.TugasPendahuluan'
             type: array
-      summary: Get all Student.
+      summary: Get all TugasPendahuluan.
       tags:
-      - Student
+      - TugasPendahuluan
     post:
-      description: Creating a new Student.
+      description: Creating a new TugasPendahuluan.
       parameters:
-      - description: the body to create a new Student
+      - description: the body to create a new TugasPendahuluan
         in: body
         name: Body
         required: true
         schema:
-          $ref: '#/definitions/controller.StudentInput'
+          $ref: '#/definitions/controller.TugasPendahuluanInput'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Student'
-      summary: Create New Student.
+            $ref: '#/definitions/models.TugasPendahuluan'
+      summary: Create New TugasPendahuluan.
       tags:
-      - Student
-  /students/{id}:
+      - TugasPendahuluan
+  /tugaspendahuluans/{id}:
     delete:
-      description: Delete a Student by id.
+      description: Delete a TugasPendahuluan by id.
       parameters:
-      - description: Student id
+      - description: TugasPendahuluan id
         in: path
         name: id
         required: true
@@ -106,14 +91,38 @@ paths:
             additionalProperties:
               type: boolean
             type: object
-      summary: Delete one Student.
+      summary: Delete one TugasPendahuluan.
       tags:
-      - Student
-  /students/id/{id}:
-    get:
-      description: Get an Student by id.
+      - TugasPendahuluan
+    patch:
+      description: Update TugasPendahuluan by id.
       parameters:
-      - description: Student id
+      - description: TugasPendahuluan id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update TugasPendahuluan
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.TugasPendahuluanInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TugasPendahuluan'
+      summary: Update TugasPendahuluan.
+      tags:
+      - TugasPendahuluan
+  /tugaspendahuluans/id/{id}:
+    get:
+      description: Get an TugasPendahuluan by id.
+      parameters:
+      - description: TugasPendahuluan id
         in: path
         name: id
         required: true
@@ -124,27 +133,8 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Student'
-      summary: Get Student.
+            $ref: '#/definitions/models.TugasPendahuluan'
+      summary: Get TugasPendahuluan.
       tags:
-      - Student
-  /students/name/{name}:
-    get:
-      description: Get an id by nama Student.
-      parameters:
-      - description: Student Name
-        in: path
-        name: name
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.Student'
-      summary: Get Id.
-      tags:
-      - Student
+      - TugasPendahuluan
 swagger: "2.0"

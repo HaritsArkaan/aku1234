@@ -24,83 +24,45 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/student/{id}": {
-            "patch": {
-                "description": "Update Student by id.",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Student"
-                ],
-                "summary": "Update Student.",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Student id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "the body to update student",
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/controller.StudentInput"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Student"
-                        }
-                    }
-                }
-            }
-        },
-        "/students": {
+        "/tugaspendahuluans": {
             "get": {
-                "description": "Get a list of Student.",
+                "description": "Get a list of TugasPendahuluan.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Student"
+                    "TugasPendahuluan"
                 ],
-                "summary": "Get all Student.",
+                "summary": "Get all TugasPendahuluan.",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Student"
+                                "$ref": "#/definitions/models.TugasPendahuluan"
                             }
                         }
                     }
                 }
             },
             "post": {
-                "description": "Creating a new Student.",
+                "description": "Creating a new TugasPendahuluan.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Student"
+                    "TugasPendahuluan"
                 ],
-                "summary": "Create New Student.",
+                "summary": "Create New TugasPendahuluan.",
                 "parameters": [
                     {
-                        "description": "the body to create a new Student",
+                        "description": "the body to create a new TugasPendahuluan",
                         "name": "Body",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.StudentInput"
+                            "$ref": "#/definitions/controller.TugasPendahuluanInput"
                         }
                     }
                 ],
@@ -108,26 +70,26 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Student"
+                            "$ref": "#/definitions/models.TugasPendahuluan"
                         }
                     }
                 }
             }
         },
-        "/students/id/{id}": {
+        "/tugaspendahuluans/id/{id}": {
             "get": {
-                "description": "Get an Student by id.",
+                "description": "Get an TugasPendahuluan by id.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Student"
+                    "TugasPendahuluan"
                 ],
-                "summary": "Get Student.",
+                "summary": "Get TugasPendahuluan.",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Student id",
+                        "description": "TugasPendahuluan id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -137,55 +99,26 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Student"
+                            "$ref": "#/definitions/models.TugasPendahuluan"
                         }
                     }
                 }
             }
         },
-        "/students/name/{name}": {
-            "get": {
-                "description": "Get an id by nama Student.",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Student"
-                ],
-                "summary": "Get Id.",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Student Name",
-                        "name": "name",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Student"
-                        }
-                    }
-                }
-            }
-        },
-        "/students/{id}": {
+        "/tugaspendahuluans/{id}": {
             "delete": {
-                "description": "Delete a Student by id.",
+                "description": "Delete a TugasPendahuluan by id.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Student"
+                    "TugasPendahuluan"
                 ],
-                "summary": "Delete one Student.",
+                "summary": "Delete one TugasPendahuluan.",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Student id",
+                        "description": "TugasPendahuluan id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -202,37 +135,88 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "patch": {
+                "description": "Update TugasPendahuluan by id.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TugasPendahuluan"
+                ],
+                "summary": "Update TugasPendahuluan.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "TugasPendahuluan id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "the body to update TugasPendahuluan",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.TugasPendahuluanInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.TugasPendahuluan"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
-        "controller.StudentInput": {
+        "controller.TugasPendahuluanInput": {
             "type": "object",
             "properties": {
-                "age": {
-                    "type": "integer"
+                "deadline": {
+                    "type": "string"
                 },
-                "class": {
-                    "type": "integer"
+                "deskripsi": {
+                    "type": "string"
                 },
-                "name": {
+                "judul": {
+                    "type": "string"
+                },
+                "kategori": {
+                    "type": "string"
+                },
+                "subJudul": {
                     "type": "string"
                 }
             }
         },
-        "models.Student": {
+        "models.TugasPendahuluan": {
             "type": "object",
             "properties": {
-                "age": {
-                    "type": "integer"
+                "createdAt": {
+                    "type": "string"
                 },
-                "class_id": {
-                    "type": "integer"
+                "deadline": {
+                    "type": "string"
+                },
+                "deskripsi": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "name": {
+                "judul": {
+                    "type": "string"
+                },
+                "kategori": {
+                    "type": "string"
+                },
+                "subJudul": {
                     "type": "string"
                 }
             }
