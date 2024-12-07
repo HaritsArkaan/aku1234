@@ -138,11 +138,11 @@ function Dashboard() {
         <tbody>
           {students.map((student) => (
             <tr key={student.ID} className="border-t">
-              <td className="px-4 py-2">{student.judul}</td>
-              <td className="px-4 py-2">{student.suJudul}</td>
-              <td className="px-4 py-2">{student.kategori}</td>
-              <td className="px-4 py-2">{student.deadline}</td>
-              <td className="px-4 py-2">{student.deskripsi}</td>
+              <td className="px-4 py-2">{student.Judul}</td>
+              <td className="px-4 py-2">{student.SubJudul}</td>
+              <td className="px-4 py-2">{student.Kategori}</td>
+              <td className="px-4 py-2">{student.Deadline}</td>
+              <td className="px-4 py-2">{student.Deskripsi}</td>
               <td className="px-4 py-2">
                 <button className="bg-yellow-400 text-black px-3 py-1 rounded-md mr-2 hover:bg-yellow-500">
                   Edit
